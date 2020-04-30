@@ -15,7 +15,7 @@
     },
     "production": {
       "outDir": "dist",
-      "publicUrl": "//yxs-pic.oss-cn-beijing.aliyuncs.com/finance",
+      "publicUrl": "./",
       "watch": false,
       "cache": false,
       "contentHash": true,
