@@ -25,7 +25,7 @@
     }
   },
   "browsersync": {
-    "host": "ttools.hundun.cn",
+    "host": "doc.mcust.cn",
     "port": 80,
     "server": "dist",
     "startPath": "/index.html",
@@ -80,16 +80,16 @@
     }
   },
   "scripts": {
-    "dev": "hundun-service dev",
-    "build": "hundun-service build",
-    "build:prod": "hundun-service build --prod",
-    "release": "hundun-service release",
-    "release:prod": "hundun-service release --prod",
+    "dev": "node scripts/build.js dev",
+    "build": "node scripts/build.js build",
     "page": "node scripts/create_page.js"
   },
   "dependencies": {
+    "browser-sync": "^2.26.7",
     "hd-debug-tools": "^1.0.6",
     "hd-sdk-dev": "^1.1.8",
+    "parcel-bundler": "^1.12.4",
+    "shelljs": "^0.8.4",
     "vue-toasted": "^1.1.27"
   },
   "devDependencies": {
