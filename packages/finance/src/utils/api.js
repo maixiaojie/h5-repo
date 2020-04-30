@@ -39,9 +39,9 @@ export const get_common = () => {
 export const enroll = (data) => {
   return new Promise((resolve, reject) => {
     let c_host = process.env.API_HOST;
-    return axios.post(`${c_host}/order/add`, {
+    return axios.post(`${c_host}/order/add`, 
       data
-    }).then(res => {
+    ).then(res => {
       if (res.data.code == 1) {
         resolve(res.data.data);
       } else {

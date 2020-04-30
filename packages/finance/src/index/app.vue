@@ -1,9 +1,8 @@
 <template>
   <main>
     <p class="tips">
-      请填写下方表格
-      <br />预约成功后
-      <br />课程顾问将在24小时之内与您联系
+      请填写下方表格，
+      <br />提交成功后，会钉钉通知大家。
     </p>
     <div class="form">
       <div class="form-item">
@@ -51,11 +50,13 @@ export default class Main extends mixins(indexMixin) {
       ...this.form
     };
     try {
-      let { enroll_id } = await enroll(params);
-
-      
+      document.querySelector(".hd-mask").classList.add("isLoading");
+      let res = await enroll(params);
+      toast('提交成功')
     } catch (e) {
       toast(e);
+    }finally {
+      document.querySelector(".hd-mask").classList.remove("isLoading");
     }
   }
   async mounted() {
