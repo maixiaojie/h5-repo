@@ -99,7 +99,6 @@
     "@babel/plugin-syntax-async-generators": "^7.0.0",
     "@babel/plugin-syntax-jsx": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.1.0",
-    "@hundun/service": "git+ssh://git@git.hundun.cn:web/base/hundun-service.git#0.1.2",
     "@vue/babel-helper-vue-jsx-merge-props": "^0.1.0",
     "@vue/babel-plugin-transform-vue-jsx": "^0.1.0",
     "@vue/component-compiler-utils": "^2.2.0",
