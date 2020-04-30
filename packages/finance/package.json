@@ -1,0 +1,124 @@
+{
+  "name": "finance",
+  "version": "0.3.1",
+  "description": "h5-project bundler",
+  "author": "Wizard67<wizard67.hjn@gmail.com>",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "parcel": {
+    "entryFiles": "src/*.html",
+    "development": {
+      "outDir": "dist",
+      "watch": true,
+      "cache": false
+    },
+    "production": {
+      "outDir": "dist",
+      "publicUrl": "//yxs-pic.oss-cn-beijing.aliyuncs.com/finance",
+      "watch": false,
+      "cache": false,
+      "contentHash": true,
+      "scopeHoist": false,
+      "sourceMaps": false,
+      "minify": true
+    }
+  },
+  "browsersync": {
+    "host": "ttools.hundun.cn",
+    "port": 80,
+    "server": "dist",
+    "startPath": "/index.html",
+    "files": "dist",
+    "watch": true,
+    "open": false,
+    "notify": false,
+    "codeSync": false
+  },
+  "hundun": {
+    "release": {
+      "path": "dist"
+    }
+  },
+  "browserslist": [
+    "last 2 version",
+    "> 1%"
+  ],
+  "babel": {
+    "plugins": [
+      "@vue/babel-plugin-transform-vue-jsx",
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": true
+        }
+      ]
+    ]
+  },
+  "postcss": {
+    "parser": "postcss-scss",
+    "plugins": {
+      "precss": {},
+      "autoprefixer": {},
+      "postcss-pxtorem": {
+        "rootValue": 16,
+        "unitPrecision": 5,
+        "propList": [
+          "*"
+        ],
+        "selectorBlackList": [],
+        "replace": true,
+        "mediaQuery": true,
+        "minPixelValue": 1
+      }
+    }
+  },
+  "scripts": {
+    "dev": "hundun-service dev",
+    "build": "hundun-service build",
+    "build:prod": "hundun-service build --prod",
+    "release": "hundun-service release",
+    "release:prod": "hundun-service release --prod",
+    "page": "node scripts/create_page.js"
+  },
+  "dependencies": {
+    "hd-debug-tools": "^1.0.6",
+    "hd-sdk-dev": "^1.1.8",
+    "vue-toasted": "^1.1.27"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-decorators": "^7.1.6",
+    "@babel/plugin-syntax-async-generators": "^7.0.0",
+    "@babel/plugin-syntax-jsx": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@hundun/service": "git+ssh://git@git.hundun.cn:web/base/hundun-service.git#0.1.2",
+    "@vue/babel-helper-vue-jsx-merge-props": "^0.1.0",
+    "@vue/babel-plugin-transform-vue-jsx": "^0.1.0",
+    "@vue/component-compiler-utils": "^2.2.0",
+    "autoprefixer": "^9.1.5",
+    "postcss-pxtorem": "^4.0.1",
+    "postcss-scss": "^2.0.0",
+    "precss": "^3.1.2",
+    "sass": "^1.23.7",
+    "vue-hot-reload-api": "^2.3.1",
+    "vue-property-decorator": "^7.2.0",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "alias": {
+    "vue": "./common/globals/vue.js",
+    "axios": "./common/globals/axios.js",
+    "wx": "./common/globals/wx.js",
+    "sa": "./common/globals/sa.js",
+    "$utils": "./common/utils",
+    "$template": "./common/template",
+    "$style": "./common/style"
+  }
+}

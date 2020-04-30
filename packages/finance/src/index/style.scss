@@ -1,0 +1,51 @@
+@mixin dialog() {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+	left: 0;
+	top: 0;
+	background: rgba(0, 0, 0, .6);
+}
+@mixin btmBtn() {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 44px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+	font-size: 16px;
+	background: rgb(220,60,60);
+}
+.hd-share {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background-image: url(https://yxs-app.oss-cn-beijing.aliyuncs.com/1e2df375506d515def3d39d36eca7ad1);
+	background-size: 30px 30px;
+	background-position: center;
+	z-index: 200;
+}
+.hd-shareTip {
+	@include dialog();
+	display: none;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	background-image: url("https://yxs-web.oss-cn-beijing.aliyuncs.com/0b7d4fd93b1916c141e3c8af9e1901f9.png");
+	background-size: 170px 180px;
+	background-position: top right;
+	background-repeat: no-repeat;
+	color: white;
+	font-size: 14px;
+}
+
+.isShow {
+	display: flex;
+}
