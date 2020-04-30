@@ -1,34 +1,94 @@
 <template>
   <main>
-    <!-- APP 环境分享按钮 -->
-    <template v-if="environment === 'app'">
-      <div class="hd-share" @click="handleShare"></div>
-    </template>
-    <!-- 微信分享提示 -->
-    <div class="hd-shareTip" :class="{isShow: showTips}" @click="showTips = false"></div>
-    <!-- 登陆弹窗 -->
-    <!-- 组件成功回调混合已经处理，无需任何处理，特殊情况自己定义回调函数名 -->
-    <Login v-if="showLogin" @on-login-suc="handleLoginSuc" @on-close="showLogin = false" :user_info="user_info"></Login>
+    <p class="tips">
+      请填写下方表格
+      <br />预约成功后
+      <br />课程顾问将在24小时之内与您联系
+    </p>
+    <div class="form">
+      <div class="form-item">
+        <input class="input" v-model="form.amount" type="tel" placeholder="消费金额" />
+      </div>
+      
+      <div class="form-item">
+        <input class="input" v-model="form.desc" type="text" placeholder="请输入描述、用途" />
+      </div>
+      <div class="form-item">
+        <select class="select" v-model="form.user_id" name="" id="">
+          <option value="" disabled selected>请选择...</option>
+          <option v-for="user in user_list" :value="user.id" :key="user.id">{{user.name}}</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="btn" @click="handleClick">立即提交</div>
   </main>
 </template>
 
 <script>
-import Component, { mixins } from 'vue-class-component'
-import indexMixin from '../mixins/index.js'
-import Login from '../components/login';
-const page_id = 'cxxly-index'
+import Component, { mixins } from "vue-class-component";
+import indexMixin from "../mixins/index.js";
+import { get_common, enroll } from "../utils/api";
+import { toast } from "hd-sdk-dev";
+const page_id = "reserve-index";
+
 @Component({
-  components:{Login}
+  components: {}
 })
 export default class Main extends mixins(indexMixin) {
-  showTips = false
+  showTips = false;
+  user_list = []
+  form = {
+    desc: "",
+    amount: "",
+    user_id: ""
+  };
+  async handleClick() {
+    if (!this.form.amount) return toast("请填写消费金额");
+    if (!this.form.desc) return toast("请填写描述");
+    if (!this.form.user_id) return toast("请选择用户");
+    let params = {
+      ...this.form
+    };
+    try {
+      let { enroll_id } = await enroll(params);
+
+      
+    } catch (e) {
+      toast(e);
+    }
+  }
   async mounted() {
-    // 获取用户信息(init方法参数说明见 混合 mixins/index)成功后添加埋点
-    await this.init(page_id)
+    try {
+      let res = await get_common()
+      this.user_list = res.users
+      var originalHeight =
+        document.documentElement.clientHeight || document.body.clientHeight;
+      window.onresize = function() {
+        var resizeHeight =
+          document.documentElement.clientHeight || document.body.clientHeight;
+        if (resizeHeight - 0 < originalHeight - 0) {
+          console.log("键盘弹起");
+        } else {
+          console.log("收起");
+        }
+      };
+    } catch (e) {
+      console && console.log(e);
+    }
+    document.body.addEventListener("focusin", () => {
+      //软键盘弹起事件
+    });
+    document.body.addEventListener("focusout", () => {
+      //软键盘关闭事件
+      window.scroll(0, 0); //失焦后强制让页面归位
+    });
     // hide loading mask
-    document.querySelector(".hd-mask").classList.remove("isLoading")
+    document.querySelector(".hd-mask").classList.remove("isLoading");
   }
 }
 </script>
 
-<style>@import "./style.scss";</style>
+<style>
+@import "./style.scss";
+</style>

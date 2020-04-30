@@ -21,6 +21,37 @@ export const get_page_config = (activity_key) => {
     })
   })
 }
+export const get_common = () => {
+  return new Promise((resolve, reject) => {
+    let c_host = process.env.API_HOST;
+    return axios.get(`${c_host}`, {
+    }).then(res => {
+      if (res.data.code == 1) {
+        resolve(res.data.data);
+      } else {
+        reject(res.data.msg);
+      }
+    }).catch(err => {
+      reject('网络繁忙, 请稍后重试');
+    })
+  })
+}
+export const enroll = (data) => {
+  return new Promise((resolve, reject) => {
+    let c_host = process.env.API_HOST;
+    return axios.post(`${c_host}/order/add`, {
+      data
+    }).then(res => {
+      if (res.data.code == 1) {
+        resolve(res.data.data);
+      } else {
+        reject(res.data.msg);
+      }
+    }).catch(err => {
+      reject('网络繁忙, 请稍后重试');
+    })
+  })
+}
 /**
  * 处理async await 异常
  * @param {*} promise
