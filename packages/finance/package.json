@@ -82,10 +82,12 @@
   "scripts": {
     "dev": "node scripts/build.js dev",
     "build": "node scripts/build.js build",
+    "release": "node scripts/build.js release",
     "page": "node scripts/create_page.js"
   },
   "dependencies": {
     "browser-sync": "^2.26.7",
+    "glob-promise": "^3.4.0",
     "hd-debug-tools": "^1.0.6",
     "hd-sdk-dev": "^1.1.8",
     "parcel-bundler": "^1.12.4",
