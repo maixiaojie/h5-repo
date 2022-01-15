@@ -91,7 +91,7 @@
     "hd-debug-tools": "^1.0.6",
     "hd-sdk-dev": "^1.1.8",
     "parcel-bundler": "^1.12.4",
-    "shelljs": "^0.8.4",
+    "shelljs": "^0.8.5",
     "vue-toasted": "^1.1.27"
   },
   "devDependencies": {
